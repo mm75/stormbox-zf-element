@@ -1,0 +1,24 @@
+{
+    "name": "jacksonveroneze/autocompletePHP",
+    "description": "Autocomplete",
+    "type": "library",
+    "keywords": [
+        "autocomplete",
+        "php"
+    ],
+    "license": "GNU Version 2.1, February 1999",
+    "authors": [
+        {
+            "name": "Jackson Veroneze",
+            "email": "jackson@jacksonveroneze.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Adldap\\": "src/"
+        }
+    }
+}
