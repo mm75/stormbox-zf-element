@@ -18,7 +18,7 @@ namespace Autocomplete\Element;
  * @link     #
  * @version 01.00.000
  */
-use Autocomplete\Response\DataItemOthers;
+
 use Zend_Form_Element_Hidden;
 use Zend_Form_Element_Text;
 
@@ -100,7 +100,7 @@ class Autocomplete extends Zend_Form_Element_Hidden
     /**
      * Outros campos para onde a resposta deve ir
      * 
-     * @var DataItemOthers 
+     * @var array 
      */
     private $others;
 
