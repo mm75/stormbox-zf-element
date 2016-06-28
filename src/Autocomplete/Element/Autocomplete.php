@@ -309,6 +309,7 @@ class Autocomplete extends Zend_Form_Element_Hidden
             $this->elementList->addDecorators($decorators);
             $this->elementDsList->addDecorators($decorators);
         }
+        
         return parent::addDecorators($decorators);
     }
 
@@ -350,6 +351,15 @@ class Autocomplete extends Zend_Form_Element_Hidden
         parent::addFilter($filter, $options);
         $this->elementText->addFilter($filter);
         return $this;
+    }
+
+    public function isValid($value)
+    {
+        if (!$this->elementText->isValid($value)) {
+            return false;
+        }
+
+        return parent::isValid($value);
     }
 
 }
