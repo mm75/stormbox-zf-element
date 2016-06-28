@@ -17,7 +17,6 @@ namespace Autocomplete\Response;
  * @link     #
  * @version 01.00.000
  */
-
 use \ArrayIterator;
 
 /**
@@ -51,34 +50,34 @@ class DataItem implements ToArray
     /**
      * @var ArrayIterator
      */
-    private $additional = null;
+    private $others = null;
 
     /**
      * @var ArrayIterator
      */
-    private $others = null;
+    private $additional = null;
 
     /**
      * Método construtor da classe.
      * 
      * @param string $content
      * @param integer $value
-     * @param ArrayIterator $additional
      * @param ArrayIterator $others
+     * @param ArrayIterator $additional
      */
-    public function __construct($content, $value, ArrayIterator $additional = null, ArrayIterator $others = null)
+    public function __construct($content, $value, ArrayIterator $others = null, ArrayIterator $additional = null)
     {
         $this->content = $content;
         $this->value = $value;
-        $this->additional = new ArrayIterator();
         $this->others = new ArrayIterator();
-
-        if (!is_null($additional)) {
-            $this->additional = $additional;
-        }
+        $this->additional = new ArrayIterator();
 
         if (!is_null($others)) {
             $this->others = $others;
+        }
+
+        if (!is_null($additional)) {
+            $this->additional = $additional;
         }
     }
 
@@ -89,22 +88,22 @@ class DataItem implements ToArray
      */
     public function toArray()
     {
-        $listAdditional = new ArrayIterator();
         $listOthers = new ArrayIterator();
-
-        foreach ($this->additional as $additional) {
-            $listAdditional->append($additional->toArray());
-        }
+        $listAdditional = new ArrayIterator();
 
         foreach ($this->others as $others) {
             $listOthers->append($others->toArray());
         }
 
+        foreach ($this->additional as $additional) {
+            $listAdditional->append($additional->toArray());
+        }
+
         $data = [
             'content' => $this->content,
             'value' => $this->value,
-            'additional' => $listAdditional->getArrayCopy(),
-            'others' => $listOthers->getArrayCopy()
+            'others' => $listOthers->getArrayCopy(),
+            'additional' => $listAdditional->getArrayCopy()
         ];
 
         return $data;
