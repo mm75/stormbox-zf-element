@@ -3,7 +3,7 @@
 namespace Autocomplete\Response;
 
 /**
- * Classe responsável por ...
+ * Classe responsável por armazenar os itens da resposta.
  *
  * PHP Version 5.6.0
  *
@@ -13,15 +13,15 @@ namespace Autocomplete\Response;
  * @author Ladislau Perrony <ladislau.perrony@inovadora.com.br>
  * @author Mario Mendonça <mario@inovadora.com.br>
  * @author Mateus Calza <mateus@inovadora.com.br>
- * @author Patrick Nascimento <patrick@inovadora.com.br>
  * @license  http://inovadora.com.br/licenca  Inovadora
  * @link     #
  * @version 01.00.000
  */
+
 use \ArrayIterator;
 
 /**
- * Classe responsável por ...
+ * Classe responsável por armazenar os itens da resposta.
  *
  * PHP Version 5.6.0
  *
@@ -31,7 +31,6 @@ use \ArrayIterator;
  * @author Ladislau Perrony <ladislau.perrony@inovadora.com.br>
  * @author Mario Mendonça <mario@inovadora.com.br>
  * @author Mateus Calza <mateus@inovadora.com.br>
- * @author Patrick Nascimento <patrick@inovadora.com.br>
  * @license  http://inovadora.com.br/licenca  Inovadora
  * @link     #
  * @version 01.00.000
@@ -63,7 +62,7 @@ class DataItem implements ToArray
      * Método construtor da classe.
      * 
      * @param string $content
-     * @param string $value
+     * @param integer $value
      * @param ArrayIterator $additional
      * @param ArrayIterator $others
      */
@@ -71,13 +70,15 @@ class DataItem implements ToArray
     {
         $this->content = $content;
         $this->value = $value;
+        $this->additional = new ArrayIterator();
+        $this->others = new ArrayIterator();
 
-        if (is_null($additional)) {
-            $this->additional = new ArrayIterator();
+        if (!is_null($additional)) {
+            $this->additional = $additional;
         }
 
-        if (is_null($others)) {
-            $this->others = new ArrayIterator();
+        if (!is_null($others)) {
+            $this->others = $others;
         }
     }
 
@@ -88,11 +89,22 @@ class DataItem implements ToArray
      */
     public function toArray()
     {
+        $listAdditional = new ArrayIterator();
+        $listOthers = new ArrayIterator();
+
+        foreach ($this->additional as $additional) {
+            $listAdditional->append($additional->toArray());
+        }
+
+        foreach ($this->others as $others) {
+            $listOthers->append($others->toArray());
+        }
+
         $data = [
             'content' => $this->content,
             'value' => $this->value,
-            'additional' => $this->additional->getArrayCopy(),
-            'others' => $this->others->getArrayCopy()
+            'additional' => $listAdditional->getArrayCopy(),
+            'others' => $listOthers->getArrayCopy()
         ];
 
         return $data;

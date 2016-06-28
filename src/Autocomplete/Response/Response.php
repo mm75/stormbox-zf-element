@@ -3,7 +3,7 @@
 namespace Autocomplete\Response;
 
 /**
- * Classe responsável por ...
+ * Classe responsável por armazenar os itens/paginação da resposta.
  *
  * PHP Version 5.6.0
  *
@@ -13,7 +13,6 @@ namespace Autocomplete\Response;
  * @author Ladislau Perrony <ladislau.perrony@inovadora.com.br>
  * @author Mario Mendonça <mario@inovadora.com.br>
  * @author Mateus Calza <mateus@inovadora.com.br>
- * @author Patrick Nascimento <patrick@inovadora.com.br>
  * @license  http://inovadora.com.br/licenca  Inovadora
  * @link     #
  * @version 01.00.000
@@ -21,7 +20,7 @@ namespace Autocomplete\Response;
 use \ArrayIterator;
 
 /**
- * Classe responsável por ...
+ * Classe responsável por armazenar os itens/paginação da resposta.
  *
  * PHP Version 5.6.0
  *
@@ -31,7 +30,6 @@ use \ArrayIterator;
  * @author Ladislau Perrony <ladislau.perrony@inovadora.com.br>
  * @author Mario Mendonça <mario@inovadora.com.br>
  * @author Mateus Calza <mateus@inovadora.com.br>
- * @author Patrick Nascimento <patrick@inovadora.com.br>
  * @license  http://inovadora.com.br/licenca  Inovadora
  * @link     #
  * @version 01.00.000
@@ -55,6 +53,7 @@ class Response
     public function __construct()
     {
         $this->data = new ArrayIterator();
+        $this->pagination = new Pagination(0, 0, 0);
     }
 
     /**
@@ -86,12 +85,16 @@ class Response
      */
     public function toArray()
     {
-        $data = [
-            'data' => $this->data->getArrayCopy(),
-            'pagination' => $this->pagination->toArray(),
-        ];
+        $listDataTmp = new ArrayIterator();
 
-        return $data;
+        foreach ($this->data as $data) {
+            $listDataTmp->append($data->toArray());
+        }
+
+        return [
+            'data' => $listDataTmp->getArrayCopy(),
+            'pagination' => $this->pagination->toArray()
+        ];
     }
 
 }

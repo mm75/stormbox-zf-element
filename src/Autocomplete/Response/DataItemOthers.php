@@ -3,7 +3,7 @@
 namespace Autocomplete\Response;
 
 /**
- * Classe responsável por ...
+ * Classe responsável por armazenar os valores(outros) da resposta.
  *
  * PHP Version 5.6.0
  *
@@ -13,7 +13,6 @@ namespace Autocomplete\Response;
  * @author Ladislau Perrony <ladislau.perrony@inovadora.com.br>
  * @author Mario Mendonça <mario@inovadora.com.br>
  * @author Mateus Calza <mateus@inovadora.com.br>
- * @author Patrick Nascimento <patrick@inovadora.com.br>
  * @license  http://inovadora.com.br/licenca  Inovadora
  * @link     #
  * @version 01.00.000
@@ -43,7 +42,7 @@ class DataItemOthers implements ToArray
      * @param string $value
      * @param string $content
      */
-    public function __construct($field, $value, $content = null)
+    public function __construct($field, $value, $content = '')
     {
         $this->field = $field;
         $this->value = $value;
@@ -59,7 +58,7 @@ class DataItemOthers implements ToArray
     {
         $data = [
             'field' => $this->field,
-            'value' => $this->content,
+            'value' => $this->value,
             'content' => $this->content
         ];
 

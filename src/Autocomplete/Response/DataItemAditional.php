@@ -3,7 +3,7 @@
 namespace Autocomplete\Response;
 
 /**
- * Classe responsável por ...
+ * Classe responsável por armazenar os valores(adicionais) da resposta.
  *
  * PHP Version 5.6.0
  *
@@ -13,7 +13,6 @@ namespace Autocomplete\Response;
  * @author Ladislau Perrony <ladislau.perrony@inovadora.com.br>
  * @author Mario Mendonça <mario@inovadora.com.br>
  * @author Mateus Calza <mateus@inovadora.com.br>
- * @author Patrick Nascimento <patrick@inovadora.com.br>
  * @license  http://inovadora.com.br/licenca  Inovadora
  * @link     #
  * @version 01.00.000
