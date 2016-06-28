@@ -18,7 +18,6 @@ namespace Autocomplete\Element;
  * @link     #
  * @version 01.00.000
  */
-
 use Zend_Form_Element_Hidden;
 use Zend_Form_Element_Text;
 
@@ -58,7 +57,7 @@ class Autocomplete extends Zend_Form_Element_Hidden
     /**
      * Codigo html do elemento text. Vem de new Zend_Form_Element_Text...
      * 
-     * @var string 
+     * @var Zend_Form_Element_Text 
      */
     private $elementText;
 
@@ -84,7 +83,7 @@ class Autocomplete extends Zend_Form_Element_Hidden
     private $list = false;
 
     /**
-     * Recebe um arrai com as referencias de componentes autocomplete pai
+     * Recebe um array com as referencias de componentes autocomplete pai
      *
      * @var array
      */
@@ -135,6 +134,222 @@ class Autocomplete extends Zend_Form_Element_Hidden
                 ->removeDecorator('Label');
 
         $this->elementText = new Zend_Form_Element_Text('text_' . $this->idElement);
+    }
+
+    public function getIdElement()
+    {
+        return $this->idElement;
+    }
+
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    public function getElementText()
+    {
+        return $this->elementText;
+    }
+
+    public function getElementList()
+    {
+        return $this->elementList;
+    }
+
+    public function getElementDsList()
+    {
+        return $this->elementDsList;
+    }
+
+    public function getList()
+    {
+        return $this->list;
+    }
+
+    public function getIdsReferences()
+    {
+        return $this->idsReferences;
+    }
+
+    public function getFormatResponse()
+    {
+        return $this->formatResponse;
+    }
+
+    public function getOthers()
+    {
+        return $this->others;
+    }
+
+    public function getOthersClean()
+    {
+        return $this->othersClean;
+    }
+
+    public function getOption()
+    {
+        return $this->option;
+    }
+
+    public function getClassElementAutocomplete()
+    {
+        return $this->classElementAutocomplete;
+    }
+
+    public function setIdElement($idElement)
+    {
+        $this->idElement = $idElement;
+        return $this;
+    }
+
+    public function setUrl($url)
+    {
+        $this->url = $url;
+        return $this;
+    }
+
+    public function setElementText(Zend_Form_Element_Text $elementText)
+    {
+        $this->elementText = $elementText;
+        return $this;
+    }
+
+    public function setElementList(Zend_Form_Element_Hidden $elementList)
+    {
+        $this->elementList = $elementList;
+        return $this;
+    }
+
+    public function setElementDsList(Zend_Form_Element_Hidden $elementDsList)
+    {
+        $this->elementDsList = $elementDsList;
+        return $this;
+    }
+
+    public function setList($list)
+    {
+        $this->list = $list;
+
+        if ($this->_lista === true) {
+            $this->elementList = new Zend_Form_Element_Hidden('lista_' . $this->idElement);
+            $this->elementDsList = new Zend_Form_Element_Hidden('ds_lista_' . $this->idElement);
+        }
+
+        return $this;
+    }
+
+    public function setIdsReferences($idsReferences)
+    {
+        $this->idsReferences = $idsReferences;
+        return $this;
+    }
+
+    public function setFormatResponse($formatResponse)
+    {
+        $this->formatResponse = $formatResponse;
+        return $this;
+    }
+
+    public function setOthers($others)
+    {
+        $this->others = $others;
+        return $this;
+    }
+
+    public function setOthersClean($othersClean)
+    {
+        $this->othersClean = $othersClean;
+        return $this;
+    }
+
+    public function setOption($option)
+    {
+        $this->option = $option;
+        return $this;
+    }
+
+    public function setClassElementAutocomplete($classElementAutocomplete)
+    {
+        $this->classElementAutocomplete = $classElementAutocomplete;
+        return $this;
+    }
+
+    public function setAcAttrib($name, $value)
+    {
+        $this->elementText->setAttrib($name, $value);
+
+        if ($name === 'class') {
+            $this->classElementAutocomplete = $value;
+        }
+
+        return $this;
+    }
+
+    public function setAcValue($value)
+    {
+        $this->elementText->setValue($value);
+        return $this;
+    }
+
+    public function setAcLabel($label)
+    {
+        $this->elementText->setLabel($label);
+        return $this;
+    }
+
+    public function addAcDecorators($decorators)
+    {
+        $this->elementText->addDecorators($decorators);
+        return $this;
+    }
+
+    public function addDecorators(array $decorators)
+    {
+        if ($this->elementList !== null && $this->elementDsList !== null) {
+            $this->elementList->addDecorators($decorators);
+            $this->elementDsList->addDecorators($decorators);
+        }
+        return parent::addDecorators($decorators);
+    }
+
+    public function removeAcDecorator($decorators)
+    {
+        $this->elementText->removeDecorator($decorators);
+        return $this;
+    }
+
+    public function setRequired($flag = true)
+    {
+        parent::setRequired($flag);
+        $this->elementText->setRequired($flag);
+        return $this;
+    }
+
+    public function setAcRequired($flag = true)
+    {
+        $this->elementText->setRequired($flag);
+        return $this;
+    }
+
+    public function addValidator($validator, $breakChainOnFailure = false, $options = array())
+    {
+        parent::addValidator($validator, $breakChainOnFailure, $options);
+        $this->elementText->addValidator($validator, $breakChainOnFailure, $options);
+        return $this;
+    }
+
+    public function addError($message)
+    {
+        parent::addError($message);
+        $this->elementText->addError($message);
+        return $this;
+    }
+
+    public function addFilter($filter, $options = array())
+    {
+        parent::addFilter($filter, $options);
+        $this->elementText->addFilter($filter);
+        return $this;
     }
 
 }
