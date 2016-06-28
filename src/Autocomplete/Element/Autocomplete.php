@@ -262,6 +262,16 @@ class Autocomplete extends Zend_Form_Element_Hidden
         return $this;
     }
 
+    /**
+     * Seta as opções necessárias de configuração para o Autocomplete
+     * selectFirst = se TRUE irá trazer o primeiro registro do autocomplete selecionado  (DEFAULT = TRUE)
+     * recordText = se TRUE irá manter o texto digitado no autocomplete, mesmo que não encontre registros.  (DEFAULT = FALSE)
+     * caso encontre, irá respeitar o selectFirst, trazendo ou nao selecionado 
+     * 
+     * @param array $opcoes
+     * @return \Form_Element_Autocomplete
+     * 
+     */    
     public function setOption($option)
     {
         $this->option = $option;
