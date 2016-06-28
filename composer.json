@@ -1,16 +1,18 @@
 {
     "name": "jacksonveroneze/autocomplete-php",
     "description": "Autocomplete",
+    "homepage" : "https://github.com/jacksonveroneze/autocomplete-php/",
     "type": "library",
+    "license": "MIT",
     "keywords": [
         "autocomplete",
         "php"
     ],
-    "license": "GNU",
     "authors": [
         {
             "name": "Jackson Veroneze",
-            "email": "jackson@jacksonveroneze.com"
+            "email": "jackson@jacksonveroneze.com",
+            "homepage": "jacksonveroneze.com"
         }
     ],
     "require": {
