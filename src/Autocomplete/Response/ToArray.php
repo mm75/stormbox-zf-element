@@ -1,6 +1,6 @@
 <?php
 
-namespace Response;
+namespace Autocomplete\Response;
 
 /**
  * Interface responsável por ...
