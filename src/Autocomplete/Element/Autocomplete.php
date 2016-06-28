@@ -1,6 +1,6 @@
 <?php
 
-namespace Element;
+namespace Autocomplete\Element;
 
 /**
  * Classe responsável por ...
@@ -18,6 +18,7 @@ namespace Element;
  * @link     #
  * @version 01.00.000
  */
+use Autocomplete\Response\DataItemOthers;
 use Zend_Form_Element_Hidden;
 use Zend_Form_Element_Text;
 
@@ -99,7 +100,7 @@ class Autocomplete extends Zend_Form_Element_Hidden
     /**
      * Outros campos para onde a resposta deve ir
      * 
-     * @var array 
+     * @var DataItemOthers 
      */
     private $others;
 
@@ -134,138 +135,6 @@ class Autocomplete extends Zend_Form_Element_Hidden
                 ->removeDecorator('Label');
 
         $this->elementText = new Zend_Form_Element_Text('text_' . $this->idElement);
-    }
-
-    public function getIdElement()
-    {
-        return $this->idElement;
-    }
-
-    public function getUrl()
-    {
-        return $this->url;
-    }
-
-    public function getElementText()
-    {
-        return $this->elementText;
-    }
-
-    public function getElementList()
-    {
-        return $this->elementList;
-    }
-
-    public function getElementDsList()
-    {
-        return $this->elementDsList;
-    }
-
-    public function getList()
-    {
-        return $this->list;
-    }
-
-    public function getIdsReferences()
-    {
-        return $this->idsReferences;
-    }
-
-    public function getFormatResponse()
-    {
-        return $this->formatResponse;
-    }
-
-    public function getOthers()
-    {
-        return $this->others;
-    }
-
-    public function getOthersClean()
-    {
-        return $this->othersClean;
-    }
-
-    public function getOption()
-    {
-        return $this->option;
-    }
-
-    public function getClassElementAutocomplete()
-    {
-        return $this->classElementAutocomplete;
-    }
-
-    public function setIdElement($idElement)
-    {
-        $this->idElement = $idElement;
-        return $this;
-    }
-
-    public function setUrl($url)
-    {
-        $this->url = $url;
-        return $this;
-    }
-
-    public function setElementText($elementText)
-    {
-        $this->elementText = $elementText;
-        return $this;
-    }
-
-    public function setElementList(Zend_Form_Element_Hidden $elementList)
-    {
-        $this->elementList = $elementList;
-        return $this;
-    }
-
-    public function setElementDsList(Zend_Form_Element_Hidden $elementDsList)
-    {
-        $this->elementDsList = $elementDsList;
-        return $this;
-    }
-
-    public function setList($list)
-    {
-        $this->list = $list;
-        return $this;
-    }
-
-    public function setIdsReferences($idsReferences)
-    {
-        $this->idsReferences = $idsReferences;
-        return $this;
-    }
-
-    public function setFormatResponse($formatResponse)
-    {
-        $this->formatResponse = $formatResponse;
-        return $this;
-    }
-
-    public function setOthers($others)
-    {
-        $this->others = $others;
-        return $this;
-    }
-
-    public function setOthersClean($othersClean)
-    {
-        $this->othersClean = $othersClean;
-        return $this;
-    }
-
-    public function setOption($option)
-    {
-        $this->option = $option;
-        return $this;
-    }
-
-    public function setClassElementAutocomplete($classElementAutocomplete)
-    {
-        $this->classElementAutocomplete = $classElementAutocomplete;
-        return $this;
     }
 
 }
