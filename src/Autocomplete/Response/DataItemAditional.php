@@ -1,9 +1,9 @@
 <?php
 
-namespace Response;
+namespace Autocomplete\Response;
 
 /**
- * Classe responsável por ...
+ * Classe responsável por armazenar os valores(adicionais) da resposta.
  *
  * PHP Version 5.6.0
  *
@@ -13,23 +13,17 @@ namespace Response;
  * @author Ladislau Perrony <ladislau.perrony@inovadora.com.br>
  * @author Mario Mendonça <mario@inovadora.com.br>
  * @author Mateus Calza <mateus@inovadora.com.br>
- * @author Patrick Nascimento <patrick@inovadora.com.br>
  * @license  http://inovadora.com.br/licenca  Inovadora
  * @link     #
  * @version 01.00.000
  */
-class DataItemOthers implements ToArray
+class DataItemAditional implements ToArray
 {
 
     /**
      * @var string
      */
-    private $field = '';
-
-    /**
-     * @var string
-     */
-    private $value = '';
+    private $label = '';
 
     /**
      * @var string
@@ -39,14 +33,12 @@ class DataItemOthers implements ToArray
     /**
      * Método construtor da classe.
      * 
-     * @param string $field
-     * @param string $value
+     * @param string $label
      * @param string $content
      */
-    public function __construct($field, $value, $content = null)
+    public function __construct($label, $content)
     {
-        $this->field = $field;
-        $this->value = $value;
+        $this->label = $label;
         $this->content = $content;
     }
 
@@ -58,8 +50,7 @@ class DataItemOthers implements ToArray
     public function toArray()
     {
         $data = [
-            'field' => $this->field,
-            'value' => $this->content,
+            'label' => $this->label,
             'content' => $this->content
         ];
 

@@ -18,8 +18,8 @@
         "zendframework/zendframework1": "^1.12"
     },
     "autoload": {
-        "psr-4": {
-            "Adldap\\": "src/"
+        "psr-0": {
+            "Autocomplete\\": "src/Autocomplete"
         }
     }
 }

@@ -1,9 +1,9 @@
 <?php
 
-namespace Response;
+namespace Autocomplete\Response;
 
 /**
- * Interface responsável por ...
+ * Interface responsável por padronizar o retorno do objeto em forma de array.
  *
  * PHP Version 5.6.0
  *
@@ -13,7 +13,6 @@ namespace Response;
  * @author Ladislau Perrony <ladislau.perrony@inovadora.com.br>
  * @author Mario Mendonça <mario@inovadora.com.br>
  * @author Mateus Calza <mateus@inovadora.com.br>
- * @author Patrick Nascimento <patrick@inovadora.com.br>
  * @license  http://inovadora.com.br/licenca  Inovadora
  * @link     #
  * @version 01.00.000

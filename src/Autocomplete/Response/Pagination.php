@@ -1,9 +1,9 @@
 <?php
 
-namespace Response;
+namespace Autocomplete\Response;
 
 /**
- * Classe responsável por ...
+ * Classe responsável por armazenar os dados da paginação.
  *
  * PHP Version 5.6.0
  *
@@ -13,7 +13,6 @@ namespace Response;
  * @author Ladislau Perrony <ladislau.perrony@inovadora.com.br>
  * @author Mario Mendonça <mario@inovadora.com.br>
  * @author Mateus Calza <mateus@inovadora.com.br>
- * @author Patrick Nascimento <patrick@inovadora.com.br>
  * @license  http://inovadora.com.br/licenca  Inovadora
  * @link     #
  * @version 01.00.000
@@ -75,9 +74,9 @@ class Pagination implements ToArray
         $data = [
             'size' => $this->size,
             'per_page' => $this->perPage,
-            'current_page' => $this->currentPage,
+            'current_page' => $this->currentPage
         ];
-        
+
         return $data;
     }
 
