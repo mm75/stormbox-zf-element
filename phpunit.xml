@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<phpunit bootstrap="./tests/bootstrap.php" colors="true">
+    <testsuites>
+        <testsuite name="jacksonveroneze\Autocomplete">
+            <directory>./tests/Autocomplete/Response</directory>
+        </testsuite>
+    </testsuites>
+
+    <filter>
+        <whitelist>
+            <directory suffix=".php">./src</directory>
+        </whitelist>
+    </filter>
+
+    <!-- <logging> -->
+    <!--     <log type="coverage&#45;html" target="./build/coverage" charset="UTF&#45;8" -->
+    <!--          yui="true" highlight="true" lowUpperBound="50" highLowerBound="80"/> -->
+    <!--     <log type="testdox&#45;html" target="./build/logs/testdox.html"/> -->
+    <!-- </logging> -->
+</phpunit>
