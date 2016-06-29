@@ -208,6 +208,8 @@ class Autocomplete extends Zend_Form_Element_Hidden
     public function setUrl($url)
     {
         $this->url = $url;
+        $this->setAttrib('data-autocomplete-url', $url);
+        
         return $this;
     }
 
