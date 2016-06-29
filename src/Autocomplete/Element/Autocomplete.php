@@ -126,7 +126,7 @@ class Autocomplete extends Zend_Form_Element_Hidden
 
     public function __construct($spec, $options = null)
     {
-        $this->setIdElemento($spec);
+        $this->setIdElement($spec);
         $this->setUrl("index");
 
         parent::__construct($spec, null);
@@ -244,6 +244,12 @@ class Autocomplete extends Zend_Form_Element_Hidden
         return $this;
     }
 
+    /**
+     * Recebe string contendo a ordem como os campos devem aparecer no autocomplete. Ex: arg[0] +" id:"+arg[1]
+     * 
+     * @param string $formatResponse
+     * @return \Autocomplete\Element\Autocomplete
+     */
     public function setFormatResponse($formatResponse)
     {
         $this->formatResponse = $formatResponse;
@@ -262,6 +268,17 @@ class Autocomplete extends Zend_Form_Element_Hidden
         return $this;
     }
 
+    /**
+     * Seta as opções necessárias de configuração para o Autocomplete:
+     * - selectFirst = se TRUE irá trazer o primeiro registro do autocomplete selecionado. (DEFAULT = TRUE)
+     * - recordText = se TRUE irá manter o texto digitado no autocomplete, mesmo que não encontre registros. (DEFAULT = FALSE)
+     * 
+     * caso encontre, irá respeitar o selectFirst, trazendo ou nao selecionado 
+     * 
+     * @param array $opcoes
+     * @return \Form_Element_Autocomplete
+     * 
+     */
     public function setOption($option)
     {
         $this->option = $option;
@@ -309,6 +326,7 @@ class Autocomplete extends Zend_Form_Element_Hidden
             $this->elementList->addDecorators($decorators);
             $this->elementDsList->addDecorators($decorators);
         }
+
         return parent::addDecorators($decorators);
     }
 
@@ -350,6 +368,22 @@ class Autocomplete extends Zend_Form_Element_Hidden
         parent::addFilter($filter, $options);
         $this->elementText->addFilter($filter);
         return $this;
+    }
+
+    public function isValid($value)
+    {
+        if (!$this->elementText->isValid($value)) {
+            return false;
+        }
+
+        return parent::isValid($value);
+    }
+
+    public function render(Zend_View_Interface $view = null)
+    {
+        $elementHidden = parent::render($view);
+
+        return $elementHidden . $this->elementText . $this->elementList . $this->elementDsList;
     }
 
 }
