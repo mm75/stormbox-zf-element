@@ -17,6 +17,23 @@ namespace Autocomplete\Response;
  * @link     #
  * @version 01.00.000
  */
+use \ArrayIterator;
+
+/**
+ * Classe responsável por armazenar os valores(adicionais) da resposta.
+ *
+ * PHP Version 5.6.0
+ *
+ * @category Autocomplete
+ * @package  Response
+ * @author Jackson Veroneze <jackson@inovadora.com.br>
+ * @author Ladislau Perrony <ladislau.perrony@inovadora.com.br>
+ * @author Mario Mendonça <mario@inovadora.com.br>
+ * @author Mateus Calza <mateus@inovadora.com.br>
+ * @license  http://inovadora.com.br/licenca  Inovadora
+ * @link     #
+ * @version 01.00.000
+ */
 class DataItemAditional implements ToArray
 {
 
@@ -49,12 +66,11 @@ class DataItemAditional implements ToArray
      */
     public function toArray()
     {
-        $data = [
-            'label' => $this->label,
-            'content' => $this->content
-        ];
+        $result = new ArrayIterator();
+        $result->offsetSet('label', $this->label);
+        $result->offsetSet('content', content);
 
-        return $data;
+        return $result->getArrayCopy();
     }
 
 }

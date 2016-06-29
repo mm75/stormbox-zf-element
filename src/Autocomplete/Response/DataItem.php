@@ -99,14 +99,13 @@ class DataItem implements ToArray
             $listAdditional->append($additional->toArray());
         }
 
-        $data = [
-            'content' => $this->content,
-            'value' => $this->value,
-            'others' => $listOthers->getArrayCopy(),
-            'additional' => $listAdditional->getArrayCopy()
-        ];
+        $result = new ArrayIterator();
+        $result->offsetSet('content', $this->content);
+        $result->offsetSet('value', $this->value);
+        $result->offsetSet('others', $listOthers->getArrayCopy());
+        $result->offsetSet('additional', $listAdditional->getArrayCopy());
 
-        return $data;
+        return $result->getArrayCopy();
     }
 
 }

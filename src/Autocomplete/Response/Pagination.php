@@ -17,6 +17,23 @@ namespace Autocomplete\Response;
  * @link     #
  * @version 01.00.000
  */
+use \ArrayIterator;
+
+/**
+ * Classe responsável por armazenar os dados da paginação.
+ *
+ * PHP Version 5.6.0
+ *
+ * @category Autocomplete
+ * @package  Response
+ * @author Jackson Veroneze <jackson@inovadora.com.br>
+ * @author Ladislau Perrony <ladislau.perrony@inovadora.com.br>
+ * @author Mario Mendonça <mario@inovadora.com.br>
+ * @author Mateus Calza <mateus@inovadora.com.br>
+ * @license  http://inovadora.com.br/licenca  Inovadora
+ * @link     #
+ * @version 01.00.000
+ */
 class Pagination implements ToArray
 {
 
@@ -71,13 +88,12 @@ class Pagination implements ToArray
      */
     public function toArray()
     {
-        $data = [
-            'size' => $this->size,
-            'per_page' => $this->perPage,
-            'current_page' => $this->currentPage
-        ];
+        $result = new ArrayIterator();
+        $result->offsetSet('size', $this->size);
+        $result->offsetSet('per_page', $this->perPage);
+        $result->offsetSet('current_page', $this->currentPage);
 
-        return $data;
+        return $result->getArrayCopy();
     }
 
 }

@@ -91,12 +91,11 @@ class Response
             $listDataTmp->append($data->toArray());
         }
 
-        $data = [
-            'data' => $listDataTmp->getArrayCopy(),
-            'pagination' => $this->pagination->toArray()
-        ];
+        $result = new ArrayIterator();
+        $result->offsetSet('data', $listDataTmp->getArrayCopy());
+        $result->offsetSet('pagination', $this->pagination->toArray());
 
-        return $data;
+        return $data->getArrayCopy();
     }
 
 }
