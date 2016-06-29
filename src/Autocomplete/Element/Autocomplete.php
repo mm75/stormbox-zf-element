@@ -126,7 +126,7 @@ class Autocomplete extends Zend_Form_Element_Hidden
 
     public function __construct($spec, $options = null)
     {
-        $this->setIdElemento($spec);
+        $this->setIdElement($spec);
         $this->setUrl("index");
 
         parent::__construct($spec, null);
