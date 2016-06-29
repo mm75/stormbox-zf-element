@@ -132,8 +132,11 @@ class Autocomplete extends Zend_Form_Element_Hidden
         parent::__construct($spec, null);
         parent::removeDecorator('HtmlTag')
                 ->removeDecorator('Label');
-
+        
+        $this->setAttrib('data-autocomplete', $spec);
+        
         $this->elementText = new Zend_Form_Element_Text('text_' . $this->idElement);
+        $this->elementText->setAttrib('data-autocomplete-text', $spec);
     }
 
     public function getIdElement()
