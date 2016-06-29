@@ -22,3 +22,4 @@ sudo: false
 notifications:
   email:
     - jackson@jacksonveroneze.com
+  slack: jacksonveroneze:8jiNMdCMM9kX1GmXjkTIOjIw
