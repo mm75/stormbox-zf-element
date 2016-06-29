@@ -379,4 +379,11 @@ class Autocomplete extends Zend_Form_Element_Hidden
         return parent::isValid($value);
     }
 
+    public function render(Zend_View_Interface $view = null)
+    {
+        $elementHidden = parent::render($view);
+
+        return $elementHidden . $this->elementText . $this->elementList . $this->elementDsList;
+    }
+
 }
