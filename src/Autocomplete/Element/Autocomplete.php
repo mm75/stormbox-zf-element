@@ -118,6 +118,41 @@ class Autocomplete extends Zend_Form_Element_Hidden
     private $option;
 
     /**
+     * Buscar imediatamente quando receber o foco
+     * 
+     * @var boolean 
+     */
+    private $searchOnFocus = false;
+
+    /**
+     * Limpa o valor corrente e o conteúdo quando o usuário digitar
+     * 
+     * @var boolean
+     */
+    private $clearOnType = false;
+
+    /**
+     * Find when user enter on element
+     * 
+     * @var boolean
+     */
+    private $autoFind = false;
+
+    /**
+     * Cria um item vazio para o valor ficar como nulo
+     * 
+     * @var boolean
+     */
+    private $emptyItem;
+
+    /**
+     * Mínimo de caracteres para iniciar a busca
+     * 
+     * @var integer
+     */
+    private $minLength = 1;
+
+    /**
      * Classe padrão para autocomplete
      * 
      * @var string 
@@ -192,6 +227,31 @@ class Autocomplete extends Zend_Form_Element_Hidden
     public function getOption()
     {
         return $this->option;
+    }
+
+    public function getSearchOnFocus()
+    {
+        return $this->searchOnFocus;
+    }
+
+    public function getClearOnType()
+    {
+        return $this->clearOnType;
+    }
+
+    public function getAutoFind()
+    {
+        return $this->autoFind;
+    }
+
+    public function getEmptyItem()
+    {
+        return $this->emptyItem;
+    }
+
+    public function getMinLength()
+    {
+        return $this->minLength;
     }
 
     public function getClassElementAutocomplete()
@@ -291,6 +351,51 @@ class Autocomplete extends Zend_Form_Element_Hidden
         foreach ($option as $key => $value) {
             $this->setAttrib('data-autocomplete-' . strtolower($key), $value);
         }
+
+        return $this;
+    }
+
+    public function setSearchOnFocus($searchOnFocus)
+    {
+        $this->searchOnFocus = $searchOnFocus;
+
+        $this->setAttrib('data-autocomplete-searchonfocus', $searchOnFocus);
+
+        return $this;
+    }
+
+    public function setClearOnType($clearOnType)
+    {
+        $this->clearOnType = $clearOnType;
+
+        $this->setAttrib('data-autocomplete-clearontype', $clearOnType);
+
+        return $this;
+    }
+
+    public function setAutoFind($autoFind)
+    {
+        $this->autoFind = $autoFind;
+
+        $this->setAttrib('data-autocomplete-autofind', $autoFind);
+
+        return $this;
+    }
+
+    public function setEmptyItem($emptyItem)
+    {
+        $this->emptyItem = $emptyItem;
+
+        $this->setAttrib('data-autocomplete-emptyitem', $emptyItem);
+
+        return $this;
+    }
+
+    public function setMinLength($minLength)
+    {
+        $this->minLength = $minLength;
+
+        $this->setAttrib('data-autocomplete-minlength', $minLength);
 
         return $this;
     }
