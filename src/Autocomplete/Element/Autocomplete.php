@@ -289,7 +289,7 @@ class Autocomplete extends Zend_Form_Element_Hidden
         $this->option = $option;
 
         foreach ($option as $key => $value) {
-            $this->setAttribs('data-autocomplete-' . $key, $value);
+            $this->setAttrib('data-autocomplete-' . strtolower($key), $value);
         }
 
         return $this;
