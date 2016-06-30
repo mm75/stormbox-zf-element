@@ -153,6 +153,13 @@ class Autocomplete extends Zend_Form_Element_Hidden
     private $minLength = 1;
 
     /**
+     * Recebe o array referente as referencias
+     * 
+     * @var array 
+     */
+    private $references;
+
+    /**
      * Classe padrão para autocomplete
      * 
      * @var string 
@@ -252,6 +259,11 @@ class Autocomplete extends Zend_Form_Element_Hidden
     public function getMinLength()
     {
         return $this->minLength;
+    }
+
+    public function getReferences()
+    {
+        return $this->references;
     }
 
     public function getClassElementAutocomplete()
@@ -397,6 +409,18 @@ class Autocomplete extends Zend_Form_Element_Hidden
 
         $this->setAttrib('data-autocomplete-minlength', $minLength);
 
+        return $this;
+    }
+
+    public function setReferences($references)
+    {
+        $this->references = $references;
+        
+        $key = 0;
+        foreach ($references as $value) {
+            $this->setAttrib('data-autocomplete-references' . $key++, $value);
+        }
+        
         return $this;
     }
 
