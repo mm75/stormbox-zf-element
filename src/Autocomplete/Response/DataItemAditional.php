@@ -68,7 +68,7 @@ class DataItemAditional implements ToArray
     {
         $result = new ArrayIterator();
         $result->offsetSet('label', $this->label);
-        $result->offsetSet('content', content);
+        $result->offsetSet('content', $this->content);
 
         return $result->getArrayCopy();
     }
