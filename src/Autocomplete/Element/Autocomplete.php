@@ -132,9 +132,9 @@ class Autocomplete extends Zend_Form_Element_Hidden
         parent::__construct($spec, null);
         parent::removeDecorator('HtmlTag')
                 ->removeDecorator('Label');
-        
+
         $this->setAttrib('data-autocomplete', $spec);
-        
+
         $this->elementText = new Zend_Form_Element_Text('text_' . $this->idElement);
         $this->elementText->setAttrib('data-autocomplete-text', $spec);
     }
@@ -209,7 +209,7 @@ class Autocomplete extends Zend_Form_Element_Hidden
     {
         $this->url = $url;
         $this->setAttrib('data-autocomplete-url', $url);
-        
+
         return $this;
     }
 
@@ -284,9 +284,14 @@ class Autocomplete extends Zend_Form_Element_Hidden
      * @return \Form_Element_Autocomplete
      * 
      */
-    public function setOption($option)
+    public function setOption(array $option)
     {
         $this->option = $option;
+
+        foreach ($option as $key => $value) {
+            $this->setAttribs('data-autocomplete-' . $key, $value);
+        }
+
         return $this;
     }
 
