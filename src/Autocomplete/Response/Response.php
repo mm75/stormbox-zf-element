@@ -95,7 +95,7 @@ class Response
         $result->offsetSet('data', $listDataTmp->getArrayCopy());
         $result->offsetSet('pagination', $this->pagination->toArray());
 
-        return $data->getArrayCopy();
+        return $result->getArrayCopy();
     }
 
 }
