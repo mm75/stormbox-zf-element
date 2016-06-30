@@ -160,6 +160,13 @@ class Autocomplete extends Zend_Form_Element_Hidden
     private $references;
 
     /**
+     * Definir mais parâmetros a serem passados
+     * 
+     * @var array
+     */
+    private $otherParams;
+
+    /**
      * Classe padrão para autocomplete
      * 
      * @var string 
@@ -264,6 +271,11 @@ class Autocomplete extends Zend_Form_Element_Hidden
     public function getReferences()
     {
         return $this->references;
+    }
+
+    public function getOtherParams()
+    {
+        return $this->otherParams;
     }
 
     public function getClassElementAutocomplete()
@@ -415,11 +427,22 @@ class Autocomplete extends Zend_Form_Element_Hidden
     public function setReferences($references)
     {
         $this->references = $references;
-        
-        foreach ($references as $value) {
+
+        foreach ($references as $key => $value) {
             $this->setAttrib('data-autocomplete-reference-' . $key, $value);
         }
+
+        return $this;
+    }
+
+    public function setOtherParams($otherParams)
+    {
+        $this->otherParams = $otherParams;
         
+        foreach ($otherParams as $key => $value) {
+            $this->setAttrib('data-autocomplete-otherparams-' . $key, $value);
+        }
+
         return $this;
     }
 
