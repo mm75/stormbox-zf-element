@@ -5,11 +5,7 @@ namespace Autocomplete\Element;
 /**
  * Classe responsável por ...
  *
- * PHP Version 5.6.0
- *
- * @category Autocomplete
- * @package  Element
- * @author Jackson Veroneze <jackson@inovadora.com.br>
+ * PHP Version 5.6.0__son@inovadora.com.br>
  * @author Ladislau Perrony <ladislau.perrony@inovadora.com.br>
  * @author Mario Mendonça <mario@inovadora.com.br>
  * @author Mateus Calza <mateus@inovadora.com.br>
@@ -173,12 +169,12 @@ class Autocomplete extends Zend_Form_Element_Hidden
      */
     private $classElementAutocomplete = 'input290';
 
-    public function __construct($spec, $options = null)
+    public function __construct($spec)
     {
         $this->setIdElement($spec);
         $this->setUrl("index");
 
-        parent::__construct($spec, null);
+        parent::__construct($spec);
         parent::removeDecorator('HtmlTag')
                 ->removeDecorator('Label');
 
