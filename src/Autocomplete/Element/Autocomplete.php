@@ -118,6 +118,48 @@ class Autocomplete extends Zend_Form_Element_Hidden
     private $option;
 
     /**
+     * Buscar imediatamente quando receber o foco
+     * 
+     * @var boolean 
+     */
+    private $searchOnFocus = false;
+
+    /**
+     * Limpa o valor corrente e o conteúdo quando o usuário digitar
+     * 
+     * @var boolean
+     */
+    private $clearOnType = false;
+
+    /**
+     * Find when user enter on element
+     * 
+     * @var boolean
+     */
+    private $autoFind = false;
+
+    /**
+     * Cria um item vazio para o valor ficar como nulo
+     * 
+     * @var boolean
+     */
+    private $emptyItem;
+
+    /**
+     * Mínimo de caracteres para iniciar a busca
+     * 
+     * @var integer
+     */
+    private $minLength = 1;
+
+    /**
+     * Recebe o array referente as referencias
+     * 
+     * @var array 
+     */
+    private $references;
+
+    /**
      * Classe padrão para autocomplete
      * 
      * @var string 
@@ -133,7 +175,10 @@ class Autocomplete extends Zend_Form_Element_Hidden
         parent::removeDecorator('HtmlTag')
                 ->removeDecorator('Label');
 
+        $this->setAttrib('data-autocomplete', $spec);
+
         $this->elementText = new Zend_Form_Element_Text('text_' . $this->idElement);
+        $this->elementText->setAttrib('data-autocomplete-text', $spec);
     }
 
     public function getIdElement()
@@ -191,6 +236,36 @@ class Autocomplete extends Zend_Form_Element_Hidden
         return $this->option;
     }
 
+    public function getSearchOnFocus()
+    {
+        return $this->searchOnFocus;
+    }
+
+    public function getClearOnType()
+    {
+        return $this->clearOnType;
+    }
+
+    public function getAutoFind()
+    {
+        return $this->autoFind;
+    }
+
+    public function getEmptyItem()
+    {
+        return $this->emptyItem;
+    }
+
+    public function getMinLength()
+    {
+        return $this->minLength;
+    }
+
+    public function getReferences()
+    {
+        return $this->references;
+    }
+
     public function getClassElementAutocomplete()
     {
         return $this->classElementAutocomplete;
@@ -205,6 +280,8 @@ class Autocomplete extends Zend_Form_Element_Hidden
     public function setUrl($url)
     {
         $this->url = $url;
+        $this->setAttrib('data-autocomplete-url', $url);
+
         return $this;
     }
 
@@ -279,9 +356,71 @@ class Autocomplete extends Zend_Form_Element_Hidden
      * @return \Form_Element_Autocomplete
      * 
      */
-    public function setOption($option)
+    public function setOption(array $option)
     {
         $this->option = $option;
+
+        foreach ($option as $key => $value) {
+            $this->setAttrib('data-autocomplete-' . strtolower($key), $value);
+        }
+
+        return $this;
+    }
+
+    public function setSearchOnFocus($searchOnFocus)
+    {
+        $this->searchOnFocus = $searchOnFocus;
+
+        $this->setAttrib('data-autocomplete-searchonfocus', $searchOnFocus);
+
+        return $this;
+    }
+
+    public function setClearOnType($clearOnType)
+    {
+        $this->clearOnType = $clearOnType;
+
+        $this->setAttrib('data-autocomplete-clearontype', $clearOnType);
+
+        return $this;
+    }
+
+    public function setAutoFind($autoFind)
+    {
+        $this->autoFind = $autoFind;
+
+        $this->setAttrib('data-autocomplete-autofind', $autoFind);
+
+        return $this;
+    }
+
+    public function setEmptyItem($emptyItem)
+    {
+        $this->emptyItem = $emptyItem;
+
+        $this->setAttrib('data-autocomplete-emptyitem', $emptyItem);
+
+        return $this;
+    }
+
+    public function setMinLength($minLength)
+    {
+        $this->minLength = $minLength;
+
+        $this->setAttrib('data-autocomplete-minlength', $minLength);
+
+        return $this;
+    }
+
+    public function setReferences($references)
+    {
+        $this->references = $references;
+        
+        $key = 0;
+        foreach ($references as $value) {
+            $this->setAttrib('data-autocomplete-references' . $key++, $value);
+        }
+        
         return $this;
     }
 

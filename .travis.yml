@@ -22,3 +22,8 @@ sudo: false
 notifications:
   email:
     - jackson@jacksonveroneze.com
+  slack: jacksonveroneze:8jiNMdCMM9kX1GmXjkTIOjIw
+  
+addons:
+  code_climate:
+    repo_token: 8837fa083ae50630ef065b7b721fa878d1dc4fe5eb6c22cd19df47279997e5db
