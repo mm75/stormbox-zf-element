@@ -416,9 +416,8 @@ class Autocomplete extends Zend_Form_Element_Hidden
     {
         $this->references = $references;
         
-        $key = 0;
         foreach ($references as $value) {
-            $this->setAttrib('data-autocomplete-references' . $key++, $value);
+            $this->setAttrib('data-autocomplete-reference-' . $key, $value);
         }
         
         return $this;
