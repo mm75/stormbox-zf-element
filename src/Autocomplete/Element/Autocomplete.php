@@ -497,6 +497,8 @@ class Autocomplete extends Zend_Form_Element_Hidden
     public function render(Zend_View_Interface $view = null)
     {
         $elementHidden = parent::render($view);
+        
+        $js = '<script>applyAutocomplete(\'' . $this->idElement . '\')</script>';
 
         return $elementHidden . $this->elementText . $this->elementList . $this->elementDsList;
     }
