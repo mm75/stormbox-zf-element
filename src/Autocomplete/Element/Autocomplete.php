@@ -86,20 +86,6 @@ class Autocomplete extends Zend_Form_Element_Hidden
     private $idsReferences;
 
     /**
-     * Guarda uma string com a funcao javascript que seta o formato da resposta
-     * 
-     * @var string 
-     */
-    private $formatResponse;
-
-    /**
-     * Outros campos para onde a resposta deve ir
-     * 
-     * @var array 
-     */
-    private $others;
-
-    /**
      * Campos que devem serem limpos após zerar o autocomplete
      * 
      * @var string 
@@ -219,16 +205,6 @@ class Autocomplete extends Zend_Form_Element_Hidden
         return $this->idsReferences;
     }
 
-    public function getFormatResponse()
-    {
-        return $this->formatResponse;
-    }
-
-    public function getOthers()
-    {
-        return $this->others;
-    }
-
     public function getOthersClean()
     {
         return $this->othersClean;
@@ -326,24 +302,6 @@ class Autocomplete extends Zend_Form_Element_Hidden
     public function setIdsReferences($idsReferences)
     {
         $this->idsReferences = $idsReferences;
-        return $this;
-    }
-
-    /**
-     * Recebe string contendo a ordem como os campos devem aparecer no autocomplete. Ex: arg[0] +" id:"+arg[1]
-     * 
-     * @param string $formatResponse
-     * @return \Autocomplete\Element\Autocomplete
-     */
-    public function setFormatResponse($formatResponse)
-    {
-        $this->formatResponse = $formatResponse;
-        return $this;
-    }
-
-    public function setOthers($others)
-    {
-        $this->others = $others;
         return $this;
     }
 
