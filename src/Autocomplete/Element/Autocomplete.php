@@ -14,8 +14,8 @@ namespace Autocomplete\Element;
  * @link     #
  * @version 01.00.000
  */
-use Zend_Form_Element_Hidden;
-use Zend_Form_Element_Text;
+use \Zend_Form_Element_Hidden;
+use \Zend_Form_Element_Text;
 
 /**
  * Classe responsável por ...
