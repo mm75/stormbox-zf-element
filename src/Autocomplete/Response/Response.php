@@ -1,6 +1,6 @@
 <?php
 
-namespace Autocomplete\Response;
+namespace Inovadora\Autocomplete\Response;
 
 /**
  * Classe responsável por armazenar os itens/paginação da resposta.

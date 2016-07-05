@@ -1,6 +1,6 @@
 <?php
 
-namespace Autocomplete\Element;
+namespace Inovadora\Autocomplete\Element;
 
 /**
  * Classe responsável por ...
@@ -415,12 +415,12 @@ class Autocomplete extends Zend_Form_Element_Hidden
     public function setReferences($references)
     {
         $this->references = $references;
-        
+
         $key = 0;
         foreach ($references as $value) {
             $this->setAttrib('data-autocomplete-references' . $key++, $value);
         }
-        
+
         return $this;
     }
 
