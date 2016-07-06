@@ -1,5 +1,5 @@
 {
-    "name": "jacksonveroneze/autocomplete-php",
+    "name": "jacksonveroneze/autocomplete",
     "description": "Autocomplete",
     "homepage": "https://github.com/jacksonveroneze/autocomplete-php/",
     "type": "library",
@@ -28,8 +28,8 @@
         "satooshi/php-coveralls": "dev-master"
     },
     "autoload": {
-        "psr-0": {
-            "Autocomplete\\": "src"
+        "psr-4": {
+            "Inovadora\\Autocomplete\\": "src"
         }
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Autocomplete\Response;
+namespace Inovadora\Autocomplete\Response;
 
 /**
  * Interface responsável por padronizar o retorno do objeto em forma de array.
