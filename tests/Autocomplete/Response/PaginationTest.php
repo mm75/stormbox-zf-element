@@ -50,7 +50,7 @@ class PaginationTest extends \PHPUnit_Framework_TestCase
         $this->size = rand(1, 10000);
         $this->perPage = rand(1, 10000);
         $this->currentPage = rand(1, 10000);
-        $this->instance = new Pagination($this->size, $this->perPage, $this->currentPage);
+        $this->instance = new \Inovadora\Autocomplete\Response\Pagination($this->size, $this->perPage, $this->currentPage);
     }
 
     /**

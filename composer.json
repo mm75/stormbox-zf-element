@@ -28,8 +28,8 @@
         "satooshi/php-coveralls": "dev-master"
     },
     "autoload": {
-        "psr-0": {
-            "Inovadora\\Autocomplete\\": "src"
+        "psr-4": {
+            "Inovadora\\Autocomplete\\": "src/"
         }
     }
 }

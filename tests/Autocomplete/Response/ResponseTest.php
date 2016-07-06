@@ -39,16 +39,16 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
     {
         $this->limiteRegistros = rand(1, 100);
 
-        $this->instance = new Response();
+        $this->instance = new \Inovadora\Autocomplete\Response\Response();
 
         for ($i = 0; $i < $this->limiteRegistros; $i++) {
-            $others = new DataItemOthers('field_' . $i, $i, 'content_' . $i);
-            $additional = new DataItemAditional('Label', $i);
-            $dataItem = new DataItem('Content_' . $i, $i, new \ArrayIterator([$others]), new \ArrayIterator([$additional]));
+            $others = new \Inovadora\Autocomplete\Response\DataItemOthers('field_' . $i, $i, 'content_' . $i);
+            $additional = new \Inovadora\Autocomplete\Response\DataItemAditional('Label', $i);
+            $dataItem = new \Inovadora\Autocomplete\Response\DataItem('Content_' . $i, $i, new \ArrayIterator([$others]), new \ArrayIterator([$additional]));
             $this->instance->setDataItem($dataItem);
         }
 
-        $this->instance->setPagination(new Pagination($this->limiteRegistros, 30, 1));
+        $this->instance->setPagination(new \Inovadora\Autocomplete\Response\Pagination($this->limiteRegistros, 30, 1));
     }
 
     /**
