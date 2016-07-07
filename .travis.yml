@@ -5,6 +5,15 @@ php:
 
 sudo: false
 
+skip_build:
+    - .gitignore
+    - .travis.yml
+    - CHANGELOG.mdown
+    - LICENSE
+    - README.md
+    - composer
+    - phpunit
+
 before_install:
   - composer self-update
 
