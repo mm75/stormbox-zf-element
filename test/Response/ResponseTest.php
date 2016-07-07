@@ -1,6 +1,6 @@
 <?php
 
-namespace Autocomplete\Response;
+namespace InovadoraTest\Autocomplete\Response;
 
 /**
  * Classe responsável pelo teste unitário.
@@ -17,7 +17,30 @@ namespace Autocomplete\Response;
  * @link     #
  * @version 01.00.000
  */
-class ResponseTest extends \PHPUnit_Framework_TestCase
+use \ArrayIterator;
+use \Inovadora\Autocomplete\Response\DataItem;
+use \Inovadora\Autocomplete\Response\DataItemAditional;
+use \Inovadora\Autocomplete\Response\DataItemOthers;
+use \Inovadora\Autocomplete\Response\Pagination;
+use \Inovadora\Autocomplete\Response\Response;
+use \PHPUnit_Framework_TestCase;
+
+/**
+ * Classe responsável pelo teste unitário.
+ *
+ * PHP Version 5.6.0
+ *
+ * @category Autocomplete
+ * @package  Response
+ * @author Jackson Veroneze <jackson@inovadora.com.br>
+ * @author Ladislau Perrony <ladislau.perrony@inovadora.com.br>
+ * @author Mario Mendonça <mario@inovadora.com.br>
+ * @author Mateus Calza <mateus@inovadora.com.br>
+ * @license  http://inovadora.com.br/licenca  Inovadora
+ * @link     #
+ * @version 01.00.000
+ */
+class ResponseTest extends PHPUnit_Framework_TestCase
 {
 
     /**
@@ -44,7 +67,7 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
         for ($i = 0; $i < $this->limiteRegistros; $i++) {
             $others = new DataItemOthers('field_' . $i, $i, 'content_' . $i);
             $additional = new DataItemAditional('Label', $i);
-            $dataItem = new DataItem('Content_' . $i, $i, new \ArrayIterator([$others]), new \ArrayIterator([$additional]));
+            $dataItem = new DataItem('Content_' . $i, $i, new ArrayIterator([$others]), new ArrayIterator([$additional]));
             $this->instance->setDataItem($dataItem);
         }
 
@@ -58,7 +81,8 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
      */
     protected function tearDown()
     {
-        
+        unset($this->limiteRegistros);
+        unset($this->instance);
     }
 
     /**

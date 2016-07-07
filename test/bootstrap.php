@@ -1,9 +1,7 @@
 <?php
 
-namespace Autocomplete\Response;
-
 /**
- * Interface responsável por padronizar o retorno do objeto em forma de array.
+ * Classe responsável por configurar o ambiente.
  *
  * PHP Version 5.6.0
  *
@@ -17,13 +15,7 @@ namespace Autocomplete\Response;
  * @link     #
  * @version 01.00.000
  */
-interface ToArray
-{
 
-    /**
-     * Método responsável por retornar o objeto como array.
-     * 
-     * @return array
-     */
-    function toArray();
-}
+error_reporting(E_ALL | E_STRICT);
+
+$autoloader = require_once dirname(__FILE__) . '/../vendor/autoload.php';

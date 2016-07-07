@@ -1,5 +1,5 @@
 {
-    "name": "jacksonveroneze/autocomplete-php",
+    "name": "jacksonveroneze/autocomplete",
     "description": "Autocomplete",
     "homepage": "https://github.com/jacksonveroneze/autocomplete-php/",
     "type": "library",
@@ -20,7 +20,7 @@
         }
     ],
     "require": {
-        "php": ">=5.5.0",
+        "php": "^5.5 || ^7.0",
         "zendframework/zendframework1": "^1.12"
     },
     "require-dev": {
@@ -28,8 +28,13 @@
         "satooshi/php-coveralls": "dev-master"
     },
     "autoload": {
-        "psr-0": {
-            "Autocomplete\\": "src"
+        "psr-4": {
+            "Inovadora\\Autocomplete\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "InovadoraTest\\Autocomplete\\": "test/"
         }
     }
 }

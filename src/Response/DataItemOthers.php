@@ -1,9 +1,9 @@
 <?php
 
-namespace Autocomplete\Response;
+namespace Inovadora\Autocomplete\Response;
 
 /**
- * Classe responsável por armazenar os valores(adicionais) da resposta.
+ * Classe responsável por armazenar os valores(outros) da resposta.
  *
  * PHP Version 5.6.0
  *
@@ -20,7 +20,7 @@ namespace Autocomplete\Response;
 use \ArrayIterator;
 
 /**
- * Classe responsável por armazenar os valores(adicionais) da resposta.
+ * Classe responsável por armazenar os valores(outros) da resposta.
  *
  * PHP Version 5.6.0
  *
@@ -34,13 +34,18 @@ use \ArrayIterator;
  * @link     #
  * @version 01.00.000
  */
-class DataItemAditional implements ToArray
+class DataItemOthers implements ToArray
 {
 
     /**
      * @var string
      */
-    private $label = '';
+    private $field = '';
+
+    /**
+     * @var string
+     */
+    private $value = '';
 
     /**
      * @var string
@@ -50,12 +55,14 @@ class DataItemAditional implements ToArray
     /**
      * Método construtor da classe.
      * 
-     * @param string $label
+     * @param string $field
+     * @param string $value
      * @param string $content
      */
-    public function __construct($label, $content)
+    public function __construct($field, $value, $content = '')
     {
-        $this->label = $label;
+        $this->field = $field;
+        $this->value = $value;
         $this->content = $content;
     }
 
@@ -67,7 +74,8 @@ class DataItemAditional implements ToArray
     public function toArray()
     {
         $result = new ArrayIterator();
-        $result->offsetSet('label', $this->label);
+        $result->offsetSet('field', $this->field);
+        $result->offsetSet('value', $this->value);
         $result->offsetSet('content', $this->content);
 
         return $result->getArrayCopy();
