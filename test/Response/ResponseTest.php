@@ -1,6 +1,6 @@
 <?php
 
-namespace Inovadora\Autocomplete\Response;
+namespace InovadoraTest\Autocomplete\Response;
 
 /**
  * Classe responsável pelo teste unitário.
@@ -17,7 +17,30 @@ namespace Inovadora\Autocomplete\Response;
  * @link     #
  * @version 01.00.000
  */
-class ResponseTest extends \PHPUnit_Framework_TestCase
+use \ArrayIterator;
+use \Inovadora\Autocomplete\Response\DataItem;
+use \Inovadora\Autocomplete\Response\DataItemAditional;
+use \Inovadora\Autocomplete\Response\DataItemOthers;
+use \Inovadora\Autocomplete\Response\Pagination;
+use \Inovadora\Autocomplete\Response\Response;
+use \PHPUnit_Framework_TestCase;
+
+/**
+ * Classe responsável pelo teste unitário.
+ *
+ * PHP Version 5.6.0
+ *
+ * @category Autocomplete
+ * @package  Response
+ * @author Jackson Veroneze <jackson@inovadora.com.br>
+ * @author Ladislau Perrony <ladislau.perrony@inovadora.com.br>
+ * @author Mario Mendonça <mario@inovadora.com.br>
+ * @author Mateus Calza <mateus@inovadora.com.br>
+ * @license  http://inovadora.com.br/licenca  Inovadora
+ * @link     #
+ * @version 01.00.000
+ */
+class ResponseTest extends PHPUnit_Framework_TestCase
 {
 
     /**
@@ -39,16 +62,16 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
     {
         $this->limiteRegistros = rand(1, 100);
 
-        $this->instance = new \Inovadora\Autocomplete\Response\Response();
+        $this->instance = new Response();
 
         for ($i = 0; $i < $this->limiteRegistros; $i++) {
-            $others = new \Inovadora\Autocomplete\Response\DataItemOthers('field_' . $i, $i, 'content_' . $i);
-            $additional = new \Inovadora\Autocomplete\Response\DataItemAditional('Label', $i);
-            $dataItem = new \Inovadora\Autocomplete\Response\DataItem('Content_' . $i, $i, new \ArrayIterator([$others]), new \ArrayIterator([$additional]));
+            $others = new DataItemOthers('field_' . $i, $i, 'content_' . $i);
+            $additional = new DataItemAditional('Label', $i);
+            $dataItem = new DataItem('Content_' . $i, $i, new ArrayIterator([$others]), new ArrayIterator([$additional]));
             $this->instance->setDataItem($dataItem);
         }
 
-        $this->instance->setPagination(new \Inovadora\Autocomplete\Response\Pagination($this->limiteRegistros, 30, 1));
+        $this->instance->setPagination(new Pagination($this->limiteRegistros, 30, 1));
     }
 
     /**
@@ -58,7 +81,8 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
      */
     protected function tearDown()
     {
-        
+        unset($this->limiteRegistros);
+        unset($this->instance);
     }
 
     /**

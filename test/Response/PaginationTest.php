@@ -1,6 +1,6 @@
 <?php
 
-namespace Inovadora\Autocomplete\Response;
+namespace InovadoraTest\Autocomplete\Response;
 
 /**
  * Classe responsável pelo teste unitário.
@@ -17,7 +17,25 @@ namespace Inovadora\Autocomplete\Response;
  * @link     #
  * @version 01.00.000
  */
-class PaginationTest extends \PHPUnit_Framework_TestCase
+use \Inovadora\Autocomplete\Response\Pagination;
+use \PHPUnit_Framework_TestCase as TestCase;
+
+/**
+ * Classe responsável pelo teste unitário.
+ *
+ * PHP Version 5.6.0
+ *
+ * @category Autocomplete
+ * @package  Response
+ * @author Jackson Veroneze <jackson@inovadora.com.br>
+ * @author Ladislau Perrony <ladislau.perrony@inovadora.com.br>
+ * @author Mario Mendonça <mario@inovadora.com.br>
+ * @author Mateus Calza <mateus@inovadora.com.br>
+ * @license  http://inovadora.com.br/licenca  Inovadora
+ * @link     #
+ * @version 01.00.000
+ */
+class PaginationTest extends TestCase
 {
 
     /**
@@ -26,17 +44,17 @@ class PaginationTest extends \PHPUnit_Framework_TestCase
     private $instance;
 
     /**
-     * @var string
+     * @var integer
      */
     private $size;
 
     /**
-     * @var string
+     * @var integer
      */
     private $perPage;
 
     /**
-     * @var string
+     * @var integer
      */
     private $currentPage;
 
@@ -50,7 +68,7 @@ class PaginationTest extends \PHPUnit_Framework_TestCase
         $this->size = rand(1, 10000);
         $this->perPage = rand(1, 10000);
         $this->currentPage = rand(1, 10000);
-        $this->instance = new \Inovadora\Autocomplete\Response\Pagination($this->size, $this->perPage, $this->currentPage);
+        $this->instance = new Pagination($this->size, $this->perPage, $this->currentPage);
     }
 
     /**
