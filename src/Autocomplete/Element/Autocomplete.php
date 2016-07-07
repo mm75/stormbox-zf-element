@@ -148,13 +148,6 @@ class Autocomplete extends Zend_Form_Element_Hidden
      */
     private $otherParams;
 
-    /**
-     * Classe padrão para autocomplete
-     * 
-     * @var string 
-     */
-    private $classElementAutocomplete = 'input290';
-
     public function __construct($spec)
     {
         $this->setIdElement($spec);
@@ -248,11 +241,6 @@ class Autocomplete extends Zend_Form_Element_Hidden
     public function getOtherParams()
     {
         return $this->otherParams;
-    }
-
-    public function getClassElementAutocomplete()
-    {
-        return $this->classElementAutocomplete;
     }
 
     public function setIdElement($idElement)
@@ -400,19 +388,9 @@ class Autocomplete extends Zend_Form_Element_Hidden
         return $this;
     }
 
-    public function setClassElementAutocomplete($classElementAutocomplete)
-    {
-        $this->classElementAutocomplete = $classElementAutocomplete;
-        return $this;
-    }
-
     public function setAcAttrib($name, $value)
     {
         $this->elementText->setAttrib($name, $value);
-
-        if ($name === 'class') {
-            $this->classElementAutocomplete = $value;
-        }
 
         return $this;
     }
