@@ -79,13 +79,6 @@ class Autocomplete extends Zend_Form_Element_Hidden
     private $list = false;
 
     /**
-     * Recebe um array com as referencias de componentes autocomplete pai
-     *
-     * @var array
-     */
-    private $idsReferences;
-
-    /**
      * Campos que devem serem limpos após zerar o autocomplete
      * 
      * @var string 
@@ -98,13 +91,6 @@ class Autocomplete extends Zend_Form_Element_Hidden
      * @var array 
      */
     private $option;
-
-    /**
-     * Buscar imediatamente quando receber o foco
-     * 
-     * @var boolean 
-     */
-    private $searchOnFocus = false;
 
     /**
      * Limpa o valor corrente e o conteúdo quando o usuário digitar
@@ -148,13 +134,6 @@ class Autocomplete extends Zend_Form_Element_Hidden
      */
     private $otherParams;
 
-    /**
-     * Classe padrão para autocomplete
-     * 
-     * @var string 
-     */
-    private $classElementAutocomplete = 'input290';
-
     public function __construct($spec)
     {
         $this->setIdElement($spec);
@@ -197,11 +176,6 @@ class Autocomplete extends Zend_Form_Element_Hidden
         return $this->list;
     }
 
-    public function getIdsReferences()
-    {
-        return $this->idsReferences;
-    }
-
     public function getOthersClean()
     {
         return $this->othersClean;
@@ -210,11 +184,6 @@ class Autocomplete extends Zend_Form_Element_Hidden
     public function getOption()
     {
         return $this->option;
-    }
-
-    public function getSearchOnFocus()
-    {
-        return $this->searchOnFocus;
     }
 
     public function getClearOnType()
@@ -245,11 +214,6 @@ class Autocomplete extends Zend_Form_Element_Hidden
     public function getOtherParams()
     {
         return $this->otherParams;
-    }
-
-    public function getClassElementAutocomplete()
-    {
-        return $this->classElementAutocomplete;
     }
 
     public function setIdElement($idElement)
@@ -293,12 +257,6 @@ class Autocomplete extends Zend_Form_Element_Hidden
         return $this;
     }
 
-    public function setIdsReferences($idsReferences)
-    {
-        $this->idsReferences = $idsReferences;
-        return $this;
-    }
-
     public function setOthersClean($othersClean)
     {
         $this->othersClean = $othersClean;
@@ -322,13 +280,6 @@ class Autocomplete extends Zend_Form_Element_Hidden
         foreach ($option as $key => $value) {
             $this->setAttrib('data-autocomplete-' . strtolower($key), $value);
         }
-        return $this;
-    }
-
-    public function setSearchOnFocus($searchOnFocus)
-    {
-        $this->searchOnFocus = $searchOnFocus;
-        $this->setAttrib('data-autocomplete-searchonfocus', $searchOnFocus);
         return $this;
     }
 
@@ -379,18 +330,10 @@ class Autocomplete extends Zend_Form_Element_Hidden
         return $this;
     }
 
-    public function setClassElementAutocomplete($classElementAutocomplete)
-    {
-        $this->classElementAutocomplete = $classElementAutocomplete;
-        return $this;
-    }
-
     public function setAcAttrib($name, $value)
     {
         $this->elementText->setAttrib($name, $value);
-        if ($name === 'class') {
-            $this->classElementAutocomplete = $value;
-        }
+
         return $this;
     }
 
