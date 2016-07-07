@@ -11,8 +11,8 @@ skip_build:
     - CHANGELOG.mdown
     - LICENSE
     - README.md
-    - composer
-    - phpunit
+    - composer.json
+    - phpunit.xml
 
 before_install:
   - composer self-update
