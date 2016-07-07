@@ -1,6 +1,6 @@
 <?php
 
-namespace Inovadora\Autocomplete\Response;
+namespace Inovadora\Autocomplete\Element;
 
 /**
  * Classe responsável por ...
