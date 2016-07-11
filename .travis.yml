@@ -27,7 +27,7 @@ after_script:
 notifications:
   email:
     - jackson@jacksonveroneze.com
-  slack: jacksonveroneze:8jiNMdCMM9kX1GmXjkTIOjIw
+  slack: inovadorasistemas:Hzs1avzIsi9jYYmzPrg3Ci58
   
 addons:
   code_climate:
