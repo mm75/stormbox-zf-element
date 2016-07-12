@@ -79,6 +79,13 @@ class Autocomplete extends Zend_Form_Element_Hidden
     private $list = false;
 
     /**
+     * Seta a opção de selecionar vários ids distintos.
+     * 
+     * @var boolean 
+     */
+    private $distinctList = true;
+
+    /**
      * Campos que devem serem limpos após zerar o autocomplete
      * 
      * @var string 
@@ -176,6 +183,11 @@ class Autocomplete extends Zend_Form_Element_Hidden
         return $this->list;
     }
 
+    public function getDistinctList()
+    {
+        return $this->distinctList;
+    }
+
     public function getOthersClean()
     {
         return $this->othersClean;
@@ -250,10 +262,18 @@ class Autocomplete extends Zend_Form_Element_Hidden
     public function setList($list)
     {
         $this->list = $list;
-        if ($this->_lista === true) {
+
+        if ($this->list === true) {
             $this->elementList = new Zend_Form_Element_Hidden('lista_' . $this->idElement);
             $this->elementDsList = new Zend_Form_Element_Hidden('ds_lista_' . $this->idElement);
         }
+
+        return $this;
+    }
+
+    public function setDistinctList($distinctList)
+    {
+        $this->distinctList = $distinctList;
         return $this;
     }
 
@@ -409,6 +429,7 @@ class Autocomplete extends Zend_Form_Element_Hidden
         if (!$this->elementText->isValid($value)) {
             return false;
         }
+
         return parent::isValid($value);
     }
 
@@ -416,8 +437,9 @@ class Autocomplete extends Zend_Form_Element_Hidden
     {
         $elementHidden = parent::render($view);
 
+        $anchor = '<span id="anchor_' . $this->idElement . '"></span>';
         $script = ' <script>applyAutocomplete(\'' . $this->idElement . '\')</script>';
-        return $elementHidden . $this->elementText . $this->elementList . $this->elementDsList . $script;
+        return $elementHidden . $this->elementText . $this->elementList . $this->elementDsList . $anchor . $script;
     }
 
 }
