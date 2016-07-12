@@ -58,6 +58,13 @@ class Autocomplete extends Zend_Form_Element_Hidden
     private $elementText;
 
     /**
+     * Codigo html do elemento text. Vem de new Zend_Form_Element_Hidden...
+     * 
+     * @var Zend_Form_Element_Hidden 
+     */
+    private $elementAnchor;
+
+    /**
      * Codigo html do elemento lista. Vem de new Zend_Form_Element_Hidden... 
      * 
      * @var Zend_Form_Element_Hidden 
@@ -144,13 +151,18 @@ class Autocomplete extends Zend_Form_Element_Hidden
     public function __construct($spec)
     {
         $this->setIdElement($spec);
+
+        $this->elementText = new Zend_Form_Element_Text('text_' . $this->idElement);
+        $this->elementAnchor = new \Zend_Form_Element_Hidden('anchor_' . $spec);
+
         $this->setUrl("index");
+        
         parent::__construct($spec);
         parent::removeDecorator('HtmlTag')
                 ->removeDecorator('Label');
-        $this->setAttrib('data-autocomplete', $spec);
-        $this->elementText = new Zend_Form_Element_Text('text_' . $this->idElement);
+        
         $this->elementText->setAttrib('data-autocomplete-text', $spec);
+        $this->elementAnchor->setAttrib('data-autocomplete', $spec);
     }
 
     public function getIdElement()
@@ -166,6 +178,11 @@ class Autocomplete extends Zend_Form_Element_Hidden
     public function getElementText()
     {
         return $this->elementText;
+    }
+
+    function getElementAnchor()
+    {
+        return $this->elementAnchor;
     }
 
     public function getElementList()
@@ -237,7 +254,7 @@ class Autocomplete extends Zend_Form_Element_Hidden
     public function setUrl($url)
     {
         $this->url = $url;
-        $this->setAttrib('data-autocomplete-url', $url);
+        $this->elementAnchor->setAttrib('data-autocomplete-url', $url);
         return $this;
     }
 
@@ -262,6 +279,7 @@ class Autocomplete extends Zend_Form_Element_Hidden
     public function setList($list)
     {
         $this->list = $list;
+        $this->elementAnchor->setAttrib('data-autocomplete-list', $list);
 
         if ($this->list === true) {
             $this->elementList = new Zend_Form_Element_Hidden('lista_' . $this->idElement);
@@ -274,7 +292,7 @@ class Autocomplete extends Zend_Form_Element_Hidden
     public function setDistinctList($distinctList)
     {
         $this->distinctList = $distinctList;
-        $this->setAttrib('data-autocomplete-distinctlist', $distinctList);
+        $this->elementAnchor->setAttrib('data-autocomplete-distinctlist', $distinctList);
         return $this;
     }
 
@@ -299,7 +317,7 @@ class Autocomplete extends Zend_Form_Element_Hidden
     {
         $this->option = $option;
         foreach ($option as $key => $value) {
-            $this->setAttrib('data-autocomplete-' . strtolower($key), $value);
+            $this->elementAnchor->setAttrib('data-autocomplete-' . strtolower($key), $value);
         }
         return $this;
     }
@@ -307,28 +325,28 @@ class Autocomplete extends Zend_Form_Element_Hidden
     public function setClearOnType($clearOnType)
     {
         $this->clearOnType = $clearOnType;
-        $this->setAttrib('data-autocomplete-clearontype', $clearOnType);
+        $this->elementAnchor->setAttrib('data-autocomplete-clearontype', $clearOnType);
         return $this;
     }
 
     public function setAutoFind($autoFind)
     {
         $this->autoFind = $autoFind;
-        $this->setAttrib('data-autocomplete-autofind', $autoFind);
+        $this->elementAnchor->setAttrib('data-autocomplete-autofind', $autoFind);
         return $this;
     }
 
     public function setEmptyItem($emptyItem)
     {
         $this->emptyItem = $emptyItem;
-        $this->setAttrib('data-autocomplete-emptyitem', $emptyItem);
+        $this->elementAnchor->setAttrib('data-autocomplete-emptyitem', $emptyItem);
         return $this;
     }
 
     public function setMinLength($minLength)
     {
         $this->minLength = $minLength;
-        $this->setAttrib('data-autocomplete-minlength', $minLength);
+        $this->elementAnchor->setAttrib('data-autocomplete-minlength', $minLength);
         return $this;
     }
 
@@ -336,7 +354,7 @@ class Autocomplete extends Zend_Form_Element_Hidden
     {
         $this->references = $references;
         foreach ($references as $key => $value) {
-            $this->setAttrib('data-autocomplete-reference-' . $key, $value);
+            $this->elementAnchor->setAttrib('data-autocomplete-reference-' . $key, $value);
         }
         return $this;
     }
@@ -346,7 +364,7 @@ class Autocomplete extends Zend_Form_Element_Hidden
         $this->otherParams = $otherParams;
 
         foreach ($otherParams as $key => $value) {
-            $this->setAttrib('data-autocomplete-otherparams-' . $key, $value);
+            $this->elementAnchor->setAttrib('data-autocomplete-otherparams-' . $key, $value);
         }
         return $this;
     }
@@ -438,9 +456,12 @@ class Autocomplete extends Zend_Form_Element_Hidden
     {
         $elementHidden = parent::render($view);
 
-        $anchor = '<span id="anchor_' . $this->idElement . '"></span>';
         $script = ' <script>applyAutocomplete(\'' . $this->idElement . '\')</script>';
-        return $elementHidden . $this->elementText . $this->elementList . $this->elementDsList . $anchor . $script;
+
+        if ($this->list) {
+            return (string) $this->elementAnchor . $script;
+        }
+        return $elementHidden . $this->elementText . $this->elementList . $this->elementDsList . $this->elementAnchor . $script;
     }
 
 }
