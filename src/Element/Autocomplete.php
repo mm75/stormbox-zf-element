@@ -274,7 +274,7 @@ class Autocomplete extends Zend_Form_Element_Hidden
     public function setDistinctList($distinctList)
     {
         $this->distinctList = $distinctList;
-        $this->setAttrib('data-autocomplete-distinctlist', $url);
+        $this->setAttrib('data-autocomplete-distinctlist', $distinctList);
         return $this;
     }
 
