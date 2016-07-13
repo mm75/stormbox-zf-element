@@ -153,14 +153,14 @@ class Autocomplete extends Zend_Form_Element_Hidden
      * 
      * @var boolean
      */
-    private $enabled;
+    private $enabled = true;
 
     /**
      * Define se o elemento terá o estado somente leitura
      * 
      * @var boolean
      */
-    private $readOnly;
+    private $readOnly = false;
 
     public function __construct($spec)
     {
