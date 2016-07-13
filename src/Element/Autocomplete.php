@@ -498,7 +498,7 @@ class Autocomplete extends Zend_Form_Element_Hidden
             $this->elementAnchor->setAttrib('disabled', 'disabled');
         }
 
-        if (!$this->readOnly) {
+        if ($this->readOnly) {
             $this->elementAnchor->setAttrib('readonly', 'readonly');
         }
 
