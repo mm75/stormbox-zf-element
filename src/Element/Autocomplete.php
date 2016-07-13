@@ -148,6 +148,20 @@ class Autocomplete extends Zend_Form_Element_Hidden
      */
     private $otherParams;
 
+    /**
+     * Define se o elemento estará habilitado/desabilitado
+     * 
+     * @var boolean
+     */
+    private $enabled;
+
+    /**
+     * Define se o elemento terá o estado somente leitura
+     * 
+     * @var boolean
+     */
+    private $readOnly;
+
     public function __construct($spec)
     {
         $this->setIdElement($spec);
@@ -156,11 +170,11 @@ class Autocomplete extends Zend_Form_Element_Hidden
         $this->elementAnchor = new \Zend_Form_Element_Hidden('anchor_' . $spec);
 
         $this->setUrl("index");
-        
+
         parent::__construct($spec);
         parent::removeDecorator('HtmlTag')
                 ->removeDecorator('Label');
-        
+
         $this->elementText->setAttrib('data-autocomplete-text', $spec);
         $this->elementAnchor->setAttrib('data-autocomplete', $spec);
     }
@@ -243,6 +257,16 @@ class Autocomplete extends Zend_Form_Element_Hidden
     public function getOtherParams()
     {
         return $this->otherParams;
+    }
+
+    public function getEnabled()
+    {
+        return $this->enabled;
+    }
+
+    public function getReadOnly()
+    {
+        return $this->readOnly;
     }
 
     public function setIdElement($idElement)
@@ -369,6 +393,18 @@ class Autocomplete extends Zend_Form_Element_Hidden
         return $this;
     }
 
+    public function setEnabled($enabled)
+    {
+        $this->enabled = $enabled;
+        return $this;
+    }
+
+    public function setReadOnly($readOnly)
+    {
+        $this->readOnly = $readOnly;
+        return $this;
+    }
+
     public function setAcAttrib($name, $value)
     {
         $this->elementText->setAttrib($name, $value);
@@ -457,6 +493,14 @@ class Autocomplete extends Zend_Form_Element_Hidden
         $elementHidden = parent::render($view);
 
         $script = ' <script>applyAutocomplete(\'' . $this->idElement . '\')</script>';
+
+        if (!$this->enabled) {
+            $this->elementAnchor->setAttrib('disabled', 'disabled');
+        }
+
+        if (!$this->readOnly) {
+            $this->elementAnchor->setAttrib('readonly', 'readonly');
+        }
 
         if ($this->list) {
             return (string) $this->elementAnchor . $script;
