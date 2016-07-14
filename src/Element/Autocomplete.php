@@ -4,160 +4,159 @@ namespace Inovadora\Autocomplete\Element;
 
 /**
  * Classe responsável por ...
- *
  * PHP Version 5.6.0__son@inovadora.com.br>
- * @author Ladislau Perrony <ladislau.perrony@inovadora.com.br>
- * @author Mario Mendonça <mario@inovadora.com.br>
- * @author Mateus Calza <mateus@inovadora.com.br>
- * @author Patrick Nascimento <patrick@inovadora.com.br>
+ *
+ * @author   Ladislau Perrony <ladislau.perrony@inovadora.com.br>
+ * @author   Mario Mendonça <mario@inovadora.com.br>
+ * @author   Mateus Calza <mateus@inovadora.com.br>
+ * @author   Patrick Nascimento <patrick@inovadora.com.br>
  * @license  http://inovadora.com.br/licenca  Inovadora
  * @link     #
- * @version 01.00.000
+ * @version  01.00.000
  */
 use \Zend_Form_Element_Hidden;
 use \Zend_Form_Element_Text;
 
 /**
  * Classe responsável por ...
- *
  * PHP Version 5.6.0
  *
  * @category Autocomplete
  * @package  Element
- * @author Jackson Veroneze <jackson@inovadora.com.br>
- * @author Ladislau Perrony <ladislau.perrony@inovadora.com.br>
- * @author Mario Mendonça <mario@inovadora.com.br>
- * @author Mateus Calza <mateus@inovadora.com.br>
- * @author Patrick Nascimento <patrick@inovadora.com.br>
+ * @author   Jackson Veroneze <jackson@inovadora.com.br>
+ * @author   Ladislau Perrony <ladislau.perrony@inovadora.com.br>
+ * @author   Mario Mendonça <mario@inovadora.com.br>
+ * @author   Mateus Calza <mateus@inovadora.com.br>
+ * @author   Patrick Nascimento <patrick@inovadora.com.br>
  * @license  http://inovadora.com.br/licenca  Inovadora
  * @link     #
- * @version 01.00.000
+ * @version  01.00.000
  */
 class Autocomplete extends Zend_Form_Element_Hidden
 {
 
     /**
      * Id do elemento que esta sendo criado. (hidden)
-     * 
-     * @var string 
+     *
+     * @var string
      */
     private $idElement;
 
     /**
      * url para onde vai a requisicao
-     * 
-     * @var string 
+     *
+     * @var string
      */
     private $url;
 
     /**
      * Codigo html do elemento text. Vem de new Zend_Form_Element_Text...
-     * 
-     * @var Zend_Form_Element_Text 
+     *
+     * @var Zend_Form_Element_Text
      */
     private $elementText;
 
     /**
      * Codigo html do elemento text. Vem de new Zend_Form_Element_Hidden...
-     * 
-     * @var Zend_Form_Element_Hidden 
+     *
+     * @var Zend_Form_Element_Hidden
      */
     private $elementAnchor;
 
     /**
-     * Codigo html do elemento lista. Vem de new Zend_Form_Element_Hidden... 
-     * 
-     * @var Zend_Form_Element_Hidden 
+     * Codigo html do elemento lista. Vem de new Zend_Form_Element_Hidden...
+     *
+     * @var Zend_Form_Element_Hidden
      */
     private $elementList = null;
 
     /**
-     * Codigo html do elemento ds lista. Vem de new Zend_Form_Element_Hidden... 
-     * 
-     * @var Zend_Form_Element_Hidden 
+     * Codigo html do elemento ds lista. Vem de new Zend_Form_Element_Hidden...
+     *
+     * @var Zend_Form_Element_Hidden
      */
     private $elementDsList = null;
 
     /**
      * Seta a opção de selecionar vários ids
-     * 
-     * @var boolean 
+     *
+     * @var boolean
      */
     private $list = false;
 
     /**
      * Seta a opção de selecionar vários ids distintos.
-     * 
-     * @var boolean 
+     *
+     * @var boolean
      */
     private $distinctList = true;
 
     /**
      * Campos que devem serem limpos após zerar o autocomplete
-     * 
-     * @var string 
+     *
+     * @var string
      */
     private $othersClean;
 
     /**
      * Armazena todas as opções que forem setadas para o componente
-     * 
-     * @var array 
+     *
+     * @var array
      */
     private $option;
 
     /**
      * Limpa o valor corrente e o conteúdo quando o usuário digitar
-     * 
+     *
      * @var boolean
      */
     private $clearOnType = false;
 
     /**
      * Find when user enter on element
-     * 
+     *
      * @var boolean
      */
     private $autoFind = false;
 
     /**
      * Cria um item vazio para o valor ficar como nulo
-     * 
+     *
      * @var boolean
      */
     private $emptyItem;
 
     /**
      * Mínimo de caracteres para iniciar a busca
-     * 
+     *
      * @var integer
      */
     private $minLength = 1;
 
     /**
      * Recebe o array referente as referencias
-     * 
-     * @var array 
+     *
+     * @var array
      */
     private $references;
 
     /**
      * Definir mais parâmetros a serem passados
-     * 
+     *
      * @var array
      */
     private $otherParams;
 
     /**
      * Define se o elemento estará habilitado/desabilitado
-     * 
+     *
      * @var boolean
      */
     private $enabled = true;
 
     /**
      * Define se o elemento terá o estado somente leitura
-     * 
+     *
      * @var boolean
      */
     private $readOnly = false;
@@ -166,14 +165,27 @@ class Autocomplete extends Zend_Form_Element_Hidden
     {
         $this->setIdElement($spec);
 
-        $this->elementText = new Zend_Form_Element_Text('text_' . $this->idElement);
-        $this->elementAnchor = new \Zend_Form_Element_Hidden('anchor_' . $spec);
+        $this->elementText = new \Zend_Form_Element_Hidden('text_' . $this->idElement);
+        $this->elementAnchor = new \Zend_Form_Element_Text('anchor_' . $spec);
 
         $this->setUrl("index");
 
         parent::__construct($spec);
         parent::removeDecorator('HtmlTag')
                 ->removeDecorator('Label');
+
+        $this->elementText
+                ->removeDecorator('HtmlTag')
+                ->removeDecorator('Label');
+
+
+        $optDesc = array('class' => 'descricao', 'tag' => 'span', 'escape' => false);
+        $optErrors = array('Description', $optDesc);
+        $elementDecorators = array('ViewHelper', 'Errors', $optErrors,
+            array('HtmlTag', array('tag' => 'dd', 'class' => '')),
+            array('Label', array('tag' => 'dt', 'class' => 'element', 'escape' => false)),
+            array(array('row' => 'HtmlTag'), array('tag' => 'dl', 'class' => '')));
+        $this->elementAnchor->setDecorators($elementDecorators);
 
         $this->elementText->setAttrib('data-autocomplete-text', $spec);
         $this->elementAnchor->setAttrib('data-autocomplete', $spec);
@@ -329,13 +341,12 @@ class Autocomplete extends Zend_Form_Element_Hidden
     /**
      * Seta as opções necessárias de configuração para o Autocomplete:
      * - selectFirst = se TRUE irá trazer o primeiro registro do autocomplete selecionado. (DEFAULT = TRUE)
-     * - recordText = se TRUE irá manter o texto digitado no autocomplete, mesmo que não encontre registros. (DEFAULT = FALSE)
-     * 
-     * caso encontre, irá respeitar o selectFirst, trazendo ou nao selecionado 
-     * 
+     * - recordText = se TRUE irá manter o texto digitado no autocomplete, mesmo que não encontre registros. (DEFAULT =
+     * FALSE) caso encontre, irá respeitar o selectFirst, trazendo ou nao selecionado
+     *
      * @param array $opcoes
+     *
      * @return \Form_Element_Autocomplete
-     * 
      */
     public function setOption(array $option)
     {
@@ -420,7 +431,7 @@ class Autocomplete extends Zend_Form_Element_Hidden
 
     public function setAcLabel($label)
     {
-        $this->elementText->setLabel($label);
+        $this->elementAnchor->setLabel($label);
         return $this;
     }
 
@@ -490,6 +501,15 @@ class Autocomplete extends Zend_Form_Element_Hidden
 
     public function render(Zend_View_Interface $view = null)
     {
+        $optTag = array('tag' => 'dl', 'style' => 'display:none;');
+        $hiddenDecorators = array('ViewHelper', 'Errors', 'Description',
+            array('HtmlTag', array('tag' => 'dd')),
+            array('Label', array('tag' => 'dt', 'class' => 'element')),
+            array(array('row' => 'HtmlTag'), $optTag));
+
+        $this->setDecorators($hiddenDecorators);
+        $this->elementText->setDecorators($hiddenDecorators);
+
         $elementHidden = parent::render($view);
 
         $script = ' <script>applyAutocomplete(\'' . $this->idElement . '\')</script>';
