@@ -1,0 +1,40 @@
+{
+    "name": "jacksonveroneze/stormbox-zf-element",
+    "description": "Stormbox ZendForm Element",
+    "homepage": "https://github.com/jacksonveroneze/stormbox-zf-element",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "autocomplete",
+        "php"
+    ],
+    "authors": [
+        {
+            "name": "Jackson Veroneze",
+            "email": "jackson@jacksonveroneze.com",
+            "homepage": "http://jacksonveroneze.com"
+        },
+        {
+            "name": "Mario Mendonça",
+            "email": "mario.mendonca@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^5.5 || ^7.0",
+        "zendframework/zendframework1": "^1.12"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "*",
+        "satooshi/php-coveralls": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "Inovadora\\StormboxZfElement\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "InovadoraTest\\StormboxZfElement\\": "test/"
+        }
+    }
+}
