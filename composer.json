@@ -1,7 +1,7 @@
 {
-    "name": "jacksonveroneze/stormbox-zf-element",
+    "name": "mm75/stormbox-zf-element",
     "description": "Stormbox ZendForm Element",
-    "homepage": "https://github.com/jacksonveroneze/stormbox-zf-element",
+    "homepage": "https://github.com/mm75/stormbox-zf-element",
     "type": "library",
     "license": "MIT",
     "keywords": [
@@ -10,13 +10,13 @@
     ],
     "authors": [
         {
+            "name": "Mario Mendonça",
+            "email": "mario.mendonca@gmail.com"
+        },
+        {
             "name": "Jackson Veroneze",
             "email": "jackson@jacksonveroneze.com",
             "homepage": "http://jacksonveroneze.com"
-        },
-        {
-            "name": "Mario Mendonça",
-            "email": "mario.mendonca@gmail.com"
         }
     ],
     "require": {
