@@ -508,7 +508,6 @@ class Autocomplete extends Zend_Form_Element_Hidden
             array(array('row' => 'HtmlTag'), $optTag));
 
         $this->setDecorators($hiddenDecorators);
-        $this->elementText->setDecorators($hiddenDecorators);
 
         $elementHidden = parent::render($view);
 
@@ -523,8 +522,13 @@ class Autocomplete extends Zend_Form_Element_Hidden
         }
 
         if ($this->list) {
+            $this->elementText->setDecorators($hiddenDecorators);
+
             return (string) $this->elementAnchor . $script;
         }
+
+        $this->elementAnchor->setDecorators($hiddenDecorators);
+
         return $elementHidden . $this->elementText . $this->elementList . $this->elementDsList . $this->elementAnchor . $script;
     }
 
