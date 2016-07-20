@@ -1,4 +1,12 @@
+<<<<<<< HEAD
 composer.phar
 composer.lock
 nbproject
 vendor
+=======
+.idea
+composer.phar
+composer.lock
+nbproject
+vendor
+>>>>>>> f1321bde381846e84fe71d34f3dbadd0e482fdc6

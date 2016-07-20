@@ -1,7 +1,7 @@
 {
-    "name": "jacksonveroneze/autocomplete",
-    "description": "Autocomplete",
-    "homepage": "https://github.com/jacksonveroneze/autocomplete-php/",
+    "name": "mm75/stormbox-zf-element",
+    "description": "Stormbox ZendForm Element",
+    "homepage": "https://github.com/mm75/stormbox-zf-element",
     "type": "library",
     "license": "MIT",
     "keywords": [
@@ -10,13 +10,13 @@
     ],
     "authors": [
         {
+            "name": "Mario Mendonça",
+            "email": "mario.mendonca@gmail.com"
+        },
+        {
             "name": "Jackson Veroneze",
             "email": "jackson@jacksonveroneze.com",
             "homepage": "http://jacksonveroneze.com"
-        },
-        {
-            "name": "Mario Mendonça",
-            "email": "mario.mendonca@gmail.com"
         }
     ],
     "require": {
@@ -29,12 +29,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Inovadora\\Autocomplete\\": "src/"
+            "Inovadora\\StormboxZfElement\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "InovadoraTest\\Autocomplete\\": "test/"
+            "InovadoraTest\\StormboxZfElement\\": "test/"
         }
     }
 }
