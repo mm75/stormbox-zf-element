@@ -1,11 +1,10 @@
 <?php
 
-namespace Inovadora\StormboxZfElement;
+namespace Inovadora\Autocomplete\Element;
 
 /**
  * Classe responsável por ...
- * 
- * PHP Version 5.6.0
+ * PHP Version 5.6.0__son@inovadora.com.br>
  *
  * @author   Ladislau Perrony <ladislau.perrony@inovadora.com.br>
  * @author   Mario Mendonça <mario@inovadora.com.br>
@@ -15,13 +14,11 @@ namespace Inovadora\StormboxZfElement;
  * @link     #
  * @version  01.00.000
  */
-
 use \Zend_Form_Element_Hidden;
 use \Zend_Form_Element_Text;
 
 /**
  * Classe responsável por ...
- * 
  * PHP Version 5.6.0
  *
  * @category Autocomplete
@@ -164,6 +161,13 @@ class Autocomplete extends Zend_Form_Element_Hidden
      */
     private $readOnly = false;
 
+    /**
+     * Label do autocomplete
+     *
+     * @var string
+     */
+    private $label;
+
     public function __construct($spec)
     {
         $this->setIdElement($spec);
@@ -282,6 +286,11 @@ class Autocomplete extends Zend_Form_Element_Hidden
     public function getReadOnly()
     {
         return $this->readOnly;
+    }
+
+    public function getLabel()
+    {
+        return $this->label;
     }
 
     public function setIdElement($idElement)
@@ -434,7 +443,7 @@ class Autocomplete extends Zend_Form_Element_Hidden
 
     public function setAcLabel($label)
     {
-        $this->elementAnchor->setLabel($label);
+        $this->label = $label;
         return $this;
     }
 
@@ -511,7 +520,6 @@ class Autocomplete extends Zend_Form_Element_Hidden
             array(array('row' => 'HtmlTag'), $optTag));
 
         $this->setDecorators($hiddenDecorators);
-        $this->elementText->setDecorators($hiddenDecorators);
 
         $elementHidden = parent::render($view);
 
@@ -526,8 +534,13 @@ class Autocomplete extends Zend_Form_Element_Hidden
         }
 
         if ($this->list) {
+            $this->elementAnchor->setLabel($this->label);
             return (string) $this->elementAnchor . $script;
         }
+
+        $this->elementText->setLabel($this->label);
+        $this->elementAnchor->setDecorators($hiddenDecorators);
+
         return $elementHidden . $this->elementText . $this->elementList . $this->elementDsList . $this->elementAnchor . $script;
     }
 
