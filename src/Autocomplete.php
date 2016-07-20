@@ -1,6 +1,6 @@
 <?php
 
-namespace Inovadora\Autocomplete\Element;
+namespace Inovadora\StormboxZfElement;
 
 /**
  * Classe responsável por ...
