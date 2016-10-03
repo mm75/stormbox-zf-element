@@ -511,7 +511,7 @@ class Autocomplete extends Zend_Form_Element_Hidden
         return parent::isValid($value);
     }
 
-    public function render(Zend_View_Interface $view = null)
+    public function render(\Zend_View_Interface $view = null)
     {
         $optTag = array('tag' => 'dl', 'style' => 'display:none;');
         $hiddenDecorators = array('ViewHelper', 'Errors', 'Description',
