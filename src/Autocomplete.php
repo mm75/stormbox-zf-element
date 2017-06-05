@@ -523,7 +523,7 @@ class Autocomplete extends Zend_Form_Element_Hidden
 
         $elementHidden = parent::render($view);
 
-        $script = ' <script>applyAutocomplete(\'' . $this->idElement . '\')</script>';
+        $script = ' <script>var ' . $this->idElement .'_autocomplete' . ' = applyAutocomplete(\'' . $this->idElement . '\')</script>';
 
         if (!$this->enabled) {
             $this->elementAnchor->setAttrib('disabled', 'disabled');
