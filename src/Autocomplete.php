@@ -521,9 +521,7 @@ class Autocomplete extends Zend_Form_Element_Hidden
 
         $this->setDecorators($hiddenDecorators);
 
-        if(!parent::isRequired()) {
-            $this->elementAnchor->setAttrib('data-autocomplete-emptyitem', true);
-        }
+        $this->elementAnchor->setAttrib('data-autocomplete-emptyitem', true);
 
         $elementHidden = parent::render($view);
 
