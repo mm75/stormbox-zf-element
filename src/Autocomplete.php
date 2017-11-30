@@ -535,6 +535,8 @@ class Autocomplete extends Zend_Form_Element_Hidden
             $this->elementAnchor->setAttrib('readonly', 'readonly');
         }
 
+        $this->elementAnchor->setAttrib('softErrors', 'true');
+
         if ($this->list) {
             $this->elementAnchor->setLabel($this->label);
             return (string) $this->elementAnchor . $script;
