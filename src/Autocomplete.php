@@ -502,13 +502,13 @@ class Autocomplete extends Zend_Form_Element_Hidden
         return $this;
     }
 
-    public function isValid($value)
+    public function isValid($value, $context = null)
     {
-        if (!$this->elementText->isValid($value)) {
+        if (!$this->elementText->isValid($value, $context)) {
             return false;
         }
 
-        return parent::isValid($value);
+        return parent::isValid($value, $context);
     }
 
     public function render(\Zend_View_Interface $view = null)
